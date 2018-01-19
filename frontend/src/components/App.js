@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     const {view} = this.state;
     return (
-      <div className='container-fluid'>{
+      <div className='container-fluid height-100'>{
         view === 'home'
           ? <Home />
           : null
