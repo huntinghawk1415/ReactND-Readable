@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Home from './Home';
-import '../style/App.css';
+import Navbar from './Navbar';
+import Home from '../Home';
+import '../../style/App.css';
 
 class App extends Component {
   state = {
