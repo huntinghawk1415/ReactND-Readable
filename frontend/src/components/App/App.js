@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     const {view} = this.state;
     return (
-      <div className='container height-100'>
+      <div className='container-fluid default-settings'>
         <Navbar />
         <div>{
           view === 'home'
