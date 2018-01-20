@@ -10,11 +10,14 @@ class App extends Component {
   render() {
     const {view} = this.state;
     return (
-      <div className='container-fluid height-100'>{
-        view === 'home'
-          ? <Home />
-          : null
-      }</div>
+      <div className='container height-100'>
+        <Navbar />
+        <div>{
+          view === 'home'
+            ? <Home />
+            : null
+        }</div>
+      </div>
     );
   }
 }
