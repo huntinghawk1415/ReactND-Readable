@@ -5,12 +5,12 @@ class Posts extends Component {
     return (
       <div className='container h-100'>
         <div className='row display-4 pt-5'>
-          Trending Now
+          Recent Posts
         </div>
         <div className='row'>
-          <div className='col-8 mt-5 border border-dark'>
+          <div className='col-8 mt-5'>
             <div className='row'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -20,7 +20,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -30,7 +30,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -40,7 +40,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -50,7 +50,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -60,7 +60,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -70,9 +70,9 @@ class Posts extends Component {
               </div>
             </div>
           </div>
-          <div className='col-3 mt-5 ml-auto border border-dark'>
+          <div className='col-3 mt-5 ml-auto'>
             <div className='row'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -82,7 +82,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -92,7 +92,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -102,7 +102,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -112,7 +112,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
@@ -122,7 +122,7 @@ class Posts extends Component {
               </div>
             </div>
             <div className='row mt-5'>
-              <div className='col border border-dark'>
+              <div className='col'>
                 <div className='row bg-primary'>
                   Column 1
                 </div>
