@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 class Home extends Component {
   render() {
     return (
-      <div className='container h-100 border border-dark'>
-        <div className='row display-4 mt-5'>
+      <div className='container h-100'>
+        <div className='row display-4 pt-5'>
           Trending Now
         </div>
         <div className='row mt-5'>
