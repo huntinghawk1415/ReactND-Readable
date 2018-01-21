@@ -3,11 +3,12 @@ import Navbar from './Navbar';
 import Home from '../Home';
 import Posts from '../Posts';
 import Profile from '../Profile';
+import Login from '../Login';
 import '../../style/App.css';
 
 class App extends Component {
   state = {
-    view: 'profile'
+    view: 'login'
   }
   render() {
     const {view} = this.state;
@@ -23,6 +24,9 @@ class App extends Component {
             :
           view === 'profile'
             ? <Profile />
+            :
+          view === 'login'
+            ? <Login />
             : null
         }</div>
       </div>
