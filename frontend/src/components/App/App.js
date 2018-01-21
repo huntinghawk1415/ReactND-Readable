@@ -6,7 +6,7 @@ import '../../style/App.css';
 
 class App extends Component {
   state = {
-    view: 'home'
+    view: 'posts'
   }
   render() {
     const {view} = this.state;
