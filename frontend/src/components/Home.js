@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Home extends Component {
   render() {
     return (
-      <div className='container h-100 border border-primary'>
+      <div className='container h-100 border border-dark'>
         <div className='row display-4 mt-5'>
           Trending Now
         </div>
