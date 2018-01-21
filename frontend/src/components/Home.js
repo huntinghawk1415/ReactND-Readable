@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Home extends Component {
   render() {
     return (
-      <div className='container'>
+      <div className='container h-100 border border-primary'>
         <div className='row display-4 mt-5'>
           Trending Now
         </div>
@@ -72,4 +72,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Home;

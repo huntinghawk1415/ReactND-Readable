@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
 import Home from '../Home';
+import Posts from '../Posts';
 import '../../style/App.css';
 
 class App extends Component {
@@ -12,9 +13,12 @@ class App extends Component {
     return (
       <div className='container-fluid default-settings'>
         <Navbar />
-        <div>{
+        <div className='h-100'>{
           view === 'home'
             ? <Home />
+            :
+          view === 'posts'
+            ? <Posts />
             : null
         }</div>
       </div>
