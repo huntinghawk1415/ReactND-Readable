@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Navbar from './Navbar';
 import Home from '../Home';
 import Posts from '../Posts';
+import Profile from '../Profile';
 import '../../style/App.css';
 
 class App extends Component {
   state = {
-    view: 'posts'
+    view: 'profile'
   }
   render() {
     const {view} = this.state;
@@ -19,6 +20,9 @@ class App extends Component {
             :
           view === 'posts'
             ? <Posts />
+            :
+          view === 'profile'
+            ? <Profile />
             : null
         }</div>
       </div>
