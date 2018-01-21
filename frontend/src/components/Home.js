@@ -4,6 +4,9 @@ class Home extends Component {
   render() {
     return (
       <div className='container'>
+        <div className='row display-4 mt-5'>
+          Trending Now
+        </div>
         <div className='row mt-5'>
           <div className='col border border-dark'>
             <div className='row bg-primary'>
