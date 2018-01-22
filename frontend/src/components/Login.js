@@ -9,7 +9,7 @@ class Login extends Component {
             <div>
               Username
             </div>
-            <div>
+            <div className='pt-1'>
               <form>
                 <input placeholder='username here'/>
               </form>
@@ -17,7 +17,7 @@ class Login extends Component {
             <div className='pt-3'>
               Passord
             </div>
-            <div>
+            <div className='pt-1'>
               <form>
                 <input placeholder='password here' type='password'/>
               </form>
