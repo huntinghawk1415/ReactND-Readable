@@ -8,6 +8,9 @@ import Login from '../Login';
 import '../../style/App.css';
 
 class App extends Component {
+  state = {
+    login: false,
+  }
   render() {
     return (
       <div className='container-fluid default-settings'>
