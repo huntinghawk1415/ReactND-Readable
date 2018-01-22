@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import Home from '../Home';
 import Posts from '../Posts';
 import Profile from '../Profile';
@@ -9,9 +9,10 @@ import '../../style/App.css';
 
 class App extends Component {
   state = {
-    login: false,
+    loggedIn: false,
   }
   render() {
+    const {loggedIn} = this.state;
     return (
       <div className='container-fluid default-settings'>
         <Navbar />
@@ -26,8 +27,13 @@ class App extends Component {
           />
           <Route
             path='/profile'
-            component={Profile}
-          />
+            render={() => (
+              loggedIn ? (
+                <Profile />
+              ) : (
+                <Redirect to="/login"/>
+              )
+            )}/>
           <Route
             path='/login'
             component={Login}
