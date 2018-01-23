@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
 import {Route} from 'react-router-dom';
+import {fetchPosts} from '../../ProjectAPI';
 import Home from '../Home';
 import Posts from '../Posts';
 import Profile from '../Profile';
@@ -8,6 +9,9 @@ import Login from '../Login';
 import '../../style/App.css';
 
 class App extends Component {
+  componentDidMount() {
+    fetchPosts();
+  }
   render() {
     return (
       <div className='container-fluid default-settings'>
