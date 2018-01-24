@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {fetchAllPosts} from '../../ProjectAPI';
-import Recent from './Recent';
+import CategoricPosts from './CategoricPosts';
 
-class Home extends Component {
+class Posts extends Component {
   state = {
     data: null,
   }
@@ -14,11 +14,21 @@ class Home extends Component {
       }))
   }
   render() {
-    const {data} = this.state
+    const {data} = this.state;
     return (
       <div className='container h-100'>
         <div className='row display-4 pt-5 pb-4'>
-          Recent
+          <div className='col'>Posts</div>
+          <div className='col ml-auto mt-auto'>
+            <select className="form-control">
+              <option disabled selected>Choose</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
         </div>
         <div>{
           data
@@ -28,7 +38,7 @@ class Home extends Component {
                   className='link-no-style text-dark'
                   to={`/${s.id}`}
                 >
-                  <Recent
+                  <CategoricPosts
                     title={s.title}
                     timestamp={s.timestamp}
                     body={s.body}
@@ -45,4 +55,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Posts;
