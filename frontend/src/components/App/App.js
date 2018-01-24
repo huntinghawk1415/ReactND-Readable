@@ -5,11 +5,15 @@ import Home from '../Home';
 import Posts from '../Posts';
 import Profile from '../Profile';
 import Login from '../Login';
+import {fetchPosts} from '../../API';
 import '../../style/App.css';
 
 class App extends Component {
   state = {
-    loggedIn: false,
+    loggedIn: true,
+  }
+  componentDidMount() {
+    fetchPosts();
   }
   render() {
     const {loggedIn} = this.state;
