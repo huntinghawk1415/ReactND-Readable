@@ -1,47 +1,53 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
-import {Route, Redirect} from 'react-router-dom';
-import Home from '../Home';
+import {Route, Redirect, Link} from 'react-router-dom';
+import MdAddCircleOutline from 'react-icons/lib/md/add-circle-outline';
+import Home from '../Home/Home';
 import Posts from '../Posts';
 import Profile from '../Profile';
 import Login from '../Login';
-import {fetchPosts} from '../../API';
 import '../../style/App.css';
 
 class App extends Component {
   state = {
-    loggedIn: true,
-  }
-  componentDidMount() {
-    fetchPosts();
+    access: true
   }
   render() {
-    const {loggedIn} = this.state;
+    const {access} = this.state;
     return (
-      <div className='container-fluid default-settings'>
-        <Navbar />
-        <div className='h-100'>
-          <Route
-            exact path='/'
-            component={Home}
-          />
-          <Route
-            path='/posts'
-            component={Posts}
-          />
-          <Route
-            path='/profile'
-            render={() => (
-              loggedIn ? (
-                <Profile />
-              ) : (
-                <Redirect to="/login"/>
-              )
-            )}/>
-          <Route
-            path='/login'
-            component={Login}
-          />
+      <div className='container-fluid app-settings'>
+        <div className='full-view'>
+          <Navbar />
+          <div>
+            <Route
+              exact path='/'
+              component={Home}
+            />
+            <Route
+              path='/posts'
+              component={Posts}
+            />
+            <Route
+              path='/profile'
+              render={() => (
+                !access
+                  ? <Redirect to='/login' />
+                  : <Profile />
+              )}
+            />
+            <Route
+              path='/login'
+              component={Login}
+            />
+          </div>
+          <div className='d-flex justify-content-center align-items-center'>
+            <Link to='/create-comment'>
+              <MdAddCircleOutline
+                size={60}
+                className='text-dark'
+              />
+            </Link>
+          </div>
         </div>
       </div>
     );

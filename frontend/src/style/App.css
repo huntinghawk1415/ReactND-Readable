@@ -1,5 +1,14 @@
-.default-settings {
+.app-settings {
   height: 100vh;
   margin: 0;
   padding: 0;
+}
+.full-view {
+  height: 100vh;
+}
+.link-no-style {
+  text-decoration: none!important;
+}
+.block-hover:hover {
+  background-color: rgb(226, 226, 226);
 }
