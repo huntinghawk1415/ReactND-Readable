@@ -7,5 +7,5 @@ const headers = {
 export const fetchPosts = () =>
   fetch(`${uri}/posts`, {headers})
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => console.log(data, new Date(data[0].timestamp * 1000)))
     .catch(err => console.log(err))
