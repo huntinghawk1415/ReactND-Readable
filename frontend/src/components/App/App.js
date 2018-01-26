@@ -57,7 +57,7 @@ class App extends Component {
               to='/create-post' 
                 title='Create a post'
             ><MdAddCircleOutline
-                size={60}
+                size={50}
                 className='text-dark'
               />
             </Link>

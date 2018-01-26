@@ -15,3 +15,9 @@ export const fetchSpecPost = (id) =>
     .then(response => response.json())
     .then(data => data)
     .catch(err => console.log(err));
+
+export const fetchComments = (id) =>
+  fetch(`${uri}/posts/${id}/comments`, {headers})
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err));
