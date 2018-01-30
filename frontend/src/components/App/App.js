@@ -11,11 +11,7 @@ import NewPost from '../NewPost';
 import '../../style/App.css';
 
 class App extends Component {
-  state = {
-    access: true
-  }
   render() {
-    const {access} = this.state;
     return (
       <div className='container-fluid app-settings'>
         <div className='full-view'>
@@ -31,18 +27,6 @@ class App extends Component {
                 component={Posts}
               />
               <Route
-                path='/profile'
-                render={() => (
-                  !access
-                    ? <Redirect to='/login' />
-                    : <Profile />
-                )}
-              />
-              <Route
-                path='/login'
-                component={Login}
-              />
-              <Route
                 path='/create-post'
                 component={NewPost}
               />
@@ -53,8 +37,8 @@ class App extends Component {
             </Switch>
           </div>
           <div className='text-right fixed-bottom pr-1 pb-1'>
-            <Link 
-              to='/create-post' 
+            <Link
+              to='/create-post'
                 title='Create a post'
             ><MdAddCircleOutline
                 size={50}

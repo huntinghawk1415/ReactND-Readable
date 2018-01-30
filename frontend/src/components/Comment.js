@@ -10,7 +10,7 @@ class Comment extends Component {
         <div className='col-10'>
           <div className='row'>
             <div className='col-2 d-flex justify-content-center align-items-center bg-dark text-light'>
-              <p>
+              <p className='font-weight-bold'>
                 {votes}
               </p>
             </div>

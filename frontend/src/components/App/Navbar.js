@@ -26,18 +26,6 @@ const Navbar = () => {
                 to='posts'
               >Posts</Link>
             </li>
-            <li className='nav-item dropdown'>
-              <Link
-                className='nav-link'
-                to='profile'
-              >Profile</Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                className='nav-link'
-                to='login'
-              >Login/Logout</Link>
-            </li>
           </ul>
         </div>
         </div>
