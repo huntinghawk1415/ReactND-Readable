@@ -2,19 +2,16 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {fetchAllPosts} from '../../ProjectAPI';
 import CategoricPosts from './CategoricPosts';
+import {connect} from 'react-redux';
+import * as Action from '../../actions';
 
 class Posts extends Component {
-  state = {
-    data: null,
-  }
   componentDidMount() {
     fetchAllPosts()
-      .then(data => this.setState({
-        data
-      }))
+      .then(data => this.props.getCatPosts(data))
   }
   render() {
-    const {data} = this.state;
+    const {postsData} = this.props;
     return (
       <div className='container h-100'>
         <div className='row display-4 pt-5 pb-4'>
@@ -31,8 +28,8 @@ class Posts extends Component {
           </div>
         </div>
         <div>{
-          data
-            ? data.map(s => (
+          postsData
+            ? postsData.map(s => (
               <div key={s.id}>
                 <Link
                   className='link-no-style text-dark'
@@ -55,4 +52,14 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+function mapStateToProps(reducer) {
+  return reducer
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getCatPosts: (data) => dispatch(Action.getCatPosts(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

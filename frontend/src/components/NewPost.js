@@ -9,32 +9,32 @@ class NewPost extends Component {
         </div>
         <form>
           <div className='form-group'>
-            <label for='title'>
+            <label htmlFor='title'>
               <h4>
                 Title
               </h4>
             </label>
-            <input 
-              type='text' 
+            <input
+              type='text'
               required
               className='form-control'
               placeholder='What is your post about?' />
           </div>
           <div className='form-group'>
-            <label for='body'>
+            <label htmlFor='body'>
               <h4>
                 Body
               </h4>
             </label>
-            <textarea 
+            <textarea
               type='text'
-              required 
+              required
               className='form-control'
               placeholder='Write your post here'
             ></textarea>
           </div>
           <div className="form-group">
-            <label for="category">
+            <label htmlFor="category">
               <h4>
                 Choose a Category
               </h4>

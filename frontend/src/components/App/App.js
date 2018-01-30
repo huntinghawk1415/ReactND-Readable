@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
-import {Switch, Route, Redirect, Link} from 'react-router-dom';
+import {Switch, Route, Link} from 'react-router-dom';
 import MdAddCircleOutline from 'react-icons/lib/md/add-circle-outline';
 import Home from '../Home/Home';
 import Posts from '../Posts/Posts';
-import Profile from '../Profile';
-import Login from '../Login';
 import SpecificPost from '../SpecificPost';
 import NewPost from '../NewPost';
 import '../../style/App.css';
