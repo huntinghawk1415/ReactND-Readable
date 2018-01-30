@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {fetchSpecPost, fetchComments} from '../ProjectAPI';
 import {formatDate} from './CommonFx';
 import Comment from './Comment';
-import VoteUpDown from './VoteUpDown';
 import {connect} from 'react-redux';
 import * as Action from '../actions';
 
@@ -17,26 +16,33 @@ class SpecificPost extends Component {
   }
   render() {
     const {specPostData, commentsData} = this.props;
-    return specPostData
+    return specPostData && !specPostData.hasOwnProperty('error')
       ? (
         <div className='container h-100'>
           <h1 className='row ml-auto display-4 pt-5 pb-4'>
             {specPostData.title}
           </h1>
           <div className='row bg-light rounded'>
-            <div className='col-1'>
-              <VoteUpDown />
-            </div>
             <h5 className='col-11 font-weight-normal p-3'>
               {specPostData.body}
             </h5>
           </div>
-          <div className='row d-flex justify-content-end mt-2 mb-5'>
-            <h5>
-              <small className='text-muted'>
-                {`${specPostData.author} ~${formatDate(specPostData.timestamp)}`}
-              </small>
-            </h5>
+          <div className='row mt-2 mb-5'>
+            <div className='col'>
+              <h5>
+                <small className='text-muted'>
+                  {`${specPostData.author} ${formatDate(specPostData.timestamp)} || Score ~${specPostData.voteScore}`}
+                </small>
+              </h5>
+            </div>
+            <div className='col d-flex justify-content-end'>
+              <div className='btn-group'>
+                <button className='btn btn-dark btn-sm'>Vote up</button>
+                <button className='btn btn-dark btn-sm'>Vote down</button>
+                <button className='btn btn-dark btn-sm'>Edit</button>
+                <button className='btn btn-danger btn-sm'>Delete</button>
+              </div>
+            </div>
           </div>
           <h3>Comments</h3>
           <div className='mb-5'>{
@@ -54,7 +60,7 @@ class SpecificPost extends Component {
               : <p>No comments yet</p>
           }</div>
         </div>
-      ) : null;
+      ) : <div className='display-3 text-center mt-5'>This Post Doesn't Exist :(</div>;
   }
 }
 

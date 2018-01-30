@@ -5,6 +5,7 @@ const initialState = {
   postsData: null,
   specPostData: null,
   commentsData: null,
+  categories: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +22,9 @@ const reducer = (state = initialState, action) => {
       return newState;
     case Action.GET_SPEC_POST:
       newState.specPostData = action.specPost;
+      return newState;
+    case Action.GET_CATEGORIES:
+      newState.categories = action.cats;
       return newState;
     default:
       console.log('returning initial state');

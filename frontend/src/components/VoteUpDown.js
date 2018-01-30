@@ -5,12 +5,12 @@ import MdArrowDropDown from 'react-icons/lib/md/arrow-drop-down';
 const VoteUpDown = () => {
   return (
     <div>
-      <div>
-        <MdArrowDropUp size={30}/>
-      </div>
-      <div>
-        <MdArrowDropDown size={30}/>
-      </div>
+      <button className='btn btn-outline-dark btn-sm m-1' title='Vote up'>
+        <MdArrowDropUp size={20}/>
+      </button>
+      <button className='btn btn-outline-dark btn-sm m-1' title='Vote down'>
+        <MdArrowDropDown size={20}/>
+      </button>
     </div> 
   )
 }

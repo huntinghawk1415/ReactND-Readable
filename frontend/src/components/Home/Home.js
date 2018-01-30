@@ -31,6 +31,7 @@ class Home extends Component {
                     body={s.body}
                     votes={s.voteScore}
                     author={s.author}
+                    commentCount={s.commentCount}
                   />
                 </Link>
               </div>

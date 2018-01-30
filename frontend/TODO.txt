@@ -1,0 +1,23 @@
+1. In posts:
+  list view:
+    upvote/downvote, delete
+    //Probably will leave this one out; ui looks and feels weird when added in
+  edit view:
+    edit
+
+2. In comments:
+  ability to edit
+  
+3. Add upvote/downvote functionality
+
+4. Add new comment
+
+5. Add sort by date and vote score for home and posts
+
+6. Figure out how to change route for each category when chosen
+
+7. Post detail is available at /:category/:post_id
+
+8. Add "author" field for new post
+
+9. Add readme.md
