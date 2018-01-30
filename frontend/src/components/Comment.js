@@ -24,7 +24,7 @@ class Comment extends Component {
             </div>
           </div>
         </div>
-        <div className='col-2 ml-auto'>
+        <div className='ml-auto'>
           <VoteUpDown />
         </div>
         <button className='btn btn-light btn-sm' title='Delete'>
