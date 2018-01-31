@@ -24,6 +24,28 @@ const defaultData = {
     voteScore: -5,
     deleted: false,
     commentCount: 0
+  },
+  "1111ok3ym7mf1p33lnez": {
+    id: '1111ok3ym7mf1p33lnez',
+    timestamp: 1468479761,
+    title: 'Extra post 1',
+    body: 'Something here',
+    author: 'jacob one',
+    category: 'udacity',
+    voteScore: 2,
+    deleted: false,
+    commentCount: 0
+  },
+  "2222ok3ym7mf1p33lnez": {
+    id: '2222ok3ym7mf1p33lnez',
+    timestamp: 146847976,
+    title: 'Extra post 2',
+    body: 'Something there',
+    author: 'jacob two',
+    category: 'udacity',
+    voteScore: -12,
+    deleted: false,
+    commentCount: 0
   }
 }
 

@@ -5,21 +5,45 @@ import AllPosts from './AllPosts';
 import SortBy from '../SortBy';
 import {connect} from 'react-redux';
 import * as Action from '../../actions';
+import * as CommonFx from '../CommonFx';
 
 class Home extends Component {
   componentDidMount() {
     fetchAllPosts()
-      .then(data => this.props.getAllPosts(data))
+      .then(data => this.props.getAllPosts(data));
+  }
+  handleDateChange = (str) => {
+    const {sortHomeByDate} = this.props;
+    if(str === 'dateNewFirst') {
+      sortHomeByDate(CommonFx.sortByDateAsc);
+      this.forceUpdate();
+    } else if (str === 'dateOldFirst') {
+      sortHomeByDate(CommonFx.sortByDateDsc);
+      this.forceUpdate();
+    }
+  }
+  handleScoreChange = (str) => {
+    const {sortHomeByVote} = this.props;
+    if(str === 'scoreHighFirst') {
+      sortHomeByVote(CommonFx.sortByVoteAsc);
+      this.forceUpdate();
+    } else if (str === 'scoreLowFirst') {
+      sortHomeByVote(CommonFx.sortByVoteDsc);
+      this.forceUpdate();
+    }
   }
   render() {
-    const {homeData} = this.props
+    const {homeData} = this.props;
     return (
       <div className='container h-100'>
         <div className='row pt-5 pb-4'>
           <div className='display-4 col'>
-            AllPosts
+            All Posts
           </div>
-          <SortBy />
+          <SortBy 
+            handleDateChange={this.handleDateChange}
+            handleScoreChange={this.handleScoreChange}
+          />
         </div>
         <div>{
           homeData
@@ -43,18 +67,20 @@ class Home extends Component {
             : null
         }</div>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(reducer) {
-  return reducer
+  return reducer;
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getAllPosts: (data) => dispatch(Action.getAllPosts(data)),
-  }
+    sortHomeByDate: (data) => dispatch(Action.sortHomeByDate(data)),
+    sortHomeByVote: (data) => dispatch(Action.sortHomeByVote(data)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

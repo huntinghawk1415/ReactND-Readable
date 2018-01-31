@@ -6,6 +6,7 @@ import CategoryList from '../CategoryList';
 import SortBy from '../SortBy';
 import {connect} from 'react-redux';
 import * as Action from '../../actions';
+import * as CommonFx from '../CommonFx';
 
 class Posts extends Component {
   componentDidMount() {
@@ -19,6 +20,26 @@ class Posts extends Component {
     fetchCatPosts(input)
       .then(data => this.props.getCatPosts(data));
   }
+  handleDateChange = (str) => {
+    const {sortPostsByDate} = this.props;
+    if(str === 'dateNewFirst') {
+      sortPostsByDate(CommonFx.sortByDateAsc);
+      this.forceUpdate();
+    } else if (str === 'dateOldFirst') {
+      sortPostsByDate(CommonFx.sortByDateDsc);
+      this.forceUpdate();
+    }
+  }
+  handleScoreChange = (str) => {
+    const {sortPostsByVote} = this.props;
+    if(str === 'scoreHighFirst') {
+      sortPostsByVote(CommonFx.sortByVoteAsc);
+      this.forceUpdate();
+    } else if (str === 'scoreLowFirst') {
+      sortPostsByVote(CommonFx.sortByVoteDsc);
+      this.forceUpdate();
+    }
+  }
   render() {
     const {postsData, categories} = this.props;
     return (
@@ -31,7 +52,10 @@ class Posts extends Component {
               <CategoryList categories={categories}/>
             </select>
           </div>
-          <SortBy />
+          <SortBy 
+            handleDateChange={this.handleDateChange}
+            handleScoreChange={this.handleScoreChange}
+          />
         </div>
         <div>{
           postsData
@@ -66,7 +90,9 @@ function mapStateToProps(reducer) {
 function mapDispatchToProps(dispatch) {
   return {
     getCatPosts: (data) => dispatch(Action.getCatPosts(data)),
-    getCategories: (data) => dispatch(Action.getCategories(data))
+    getCategories: (data) => dispatch(Action.getCategories(data)),
+    sortPostsByDate: (data) => dispatch(Action.sortPostsByDate(data)),
+    sortPostsByVote: (data) => dispatch(Action.sortPostsByVote(data)),
   };
 }
 

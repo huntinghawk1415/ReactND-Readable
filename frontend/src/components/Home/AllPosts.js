@@ -29,7 +29,7 @@ class AllPosts extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import {fetchSpecPost, fetchComments, postVote} from '../ProjectAPI';
+import {
+  fetchSpecPost, 
+  fetchComments, 
+  // postVote
+}from '../ProjectAPI';
 import {formatDate} from './CommonFx';
 import Comment from './Comment';
 import {Link} from 'react-router-dom';
@@ -11,9 +15,9 @@ class SpecificPost extends Component {
     const {getSpecPost, getSpecComments} = this.props;
     const {id} = this.props.match.params;
     fetchSpecPost(id)
-      .then(data => getSpecPost(data))
+      .then(data => getSpecPost(data));
     fetchComments(id)
-      .then(comments => getSpecComments(comments))
+      .then(comments => getSpecComments(comments));
   }
   // handleVote = ({target}) => {
   //   const {postPostVote} = this.props;
@@ -21,6 +25,7 @@ class SpecificPost extends Component {
   //     .then(data => postPostVote(this.props.match.params.id, target.value))
   // }
   render() {
+    console.log(this.props)
     const {specPostData, commentsData} = this.props;
     return specPostData && !specPostData.hasOwnProperty('error')
       ? (
@@ -72,7 +77,7 @@ class SpecificPost extends Component {
 }
 
 function mapStateToProps(reducer) {
-  return reducer
+  return reducer;
 }
 
 function mapDispatchToProps(dispatch) {
@@ -80,7 +85,7 @@ function mapDispatchToProps(dispatch) {
     getSpecPost: (data) => dispatch(Action.getSpecPost(data)),
     getSpecComments: (data) => dispatch(Action.getSpecComments(data)),
     // postPostVote: (data) => dispatch(Action.postPostVote(data)),
-  }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpecificPost);

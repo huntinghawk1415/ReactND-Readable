@@ -4,6 +4,10 @@ export const GET_SPEC_COMMENTS = 'GET_SPEC_COMMENTS';
 export const GET_SPEC_POST = 'GET_SPEC_POST';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 // export const POST_POST_VOTE = 'POST_POST_VOTE';
+export const SORT_HOME_BY_DATE = 'SORT_HOME_BY_DATE';
+export const SORT_HOME_BY_VOTE = 'SORT_HOME_BY_VOTE';
+export const SORT_POSTS_BY_DATE = 'SORT_POSTS_BY_DATE';
+export const SORT_POSTS_BY_VOTE = 'SORT_POSTS_BY_VOTE';
 
 export const getAllPosts = (posts) => {
   return {
@@ -47,3 +51,31 @@ export const getCategories = (cats) => {
 //     vote,
 //   }
 // }
+
+export const sortHomeByDate = (func) => {
+  return {
+    type: SORT_HOME_BY_DATE,
+    func,
+  };
+};
+
+export const sortHomeByVote = (func) => {
+  return {
+    type: SORT_HOME_BY_VOTE,
+    func,
+  };
+};
+
+export const sortPostsByDate = (func) => {
+  return {
+    type: SORT_POSTS_BY_DATE,
+    func,
+  };
+};
+
+export const sortPostsByVote = (func) => {
+  return {
+    type: SORT_POSTS_BY_VOTE,
+    func,
+  };
+};
