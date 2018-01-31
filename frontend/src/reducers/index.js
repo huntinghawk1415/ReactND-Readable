@@ -26,6 +26,24 @@ const reducer = (state = initialState, action) => {
     case Action.GET_CATEGORIES:
       newState.categories = action.cats;
       return newState;
+    // case Action.POST_POST_VOTE:
+    //   if(action.vote === 'upVote') {
+    //     newState.map(s =>
+    //       s.id === action.id
+    //         ? s.voteScore++
+    //         : s
+    //     )
+    //   } else if (action.vote === 'downVote') {
+    //     var stateMapped = newState.map(s =>
+    //       s.id === action.id
+    //         ? s.voteScore--
+    //         : s
+    //     )
+    //     return stateMapped
+    //   } else {
+    //     console.log('failed', action.id, action.vote)
+    //     return state
+    //   }
     default:
       console.log('returning initial state');
       return state;

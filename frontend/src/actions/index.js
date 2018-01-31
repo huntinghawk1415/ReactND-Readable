@@ -3,6 +3,7 @@ export const GET_CAT_POSTS = 'GET_CAT_POSTS';
 export const GET_SPEC_COMMENTS = 'GET_SPEC_COMMENTS';
 export const GET_SPEC_POST = 'GET_SPEC_POST';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
+// export const POST_POST_VOTE = 'POST_POST_VOTE';
 
 export const getAllPosts = (posts) => {
   return {
@@ -38,3 +39,11 @@ export const getCategories = (cats) => {
     cats,
   };
 };
+
+// export const postPostVote = (id, vote) => {
+//   return {
+//     type: POST_POST_VOTE,
+//     id,
+//     vote,
+//   }
+// }

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {fetchSpecPost, fetchComments} from '../ProjectAPI';
+import {fetchSpecPost, fetchComments, postVote} from '../ProjectAPI';
 import {formatDate} from './CommonFx';
 import Comment from './Comment';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as Action from '../actions';
 
@@ -14,6 +15,11 @@ class SpecificPost extends Component {
     fetchComments(id)
       .then(comments => getSpecComments(comments))
   }
+  // handleVote = ({target}) => {
+  //   const {postPostVote} = this.props;
+  //   postVote(this.props.match.params.id, target.value)
+  //     .then(data => postPostVote(this.props.match.params.id, target.value))
+  // }
   render() {
     const {specPostData, commentsData} = this.props;
     return specPostData && !specPostData.hasOwnProperty('error')
@@ -37,8 +43,9 @@ class SpecificPost extends Component {
             </div>
             <div className='col d-flex justify-content-end'>
               <div className='btn-group'>
-                <button className='btn btn-dark btn-sm'>Vote up</button>
-                <button className='btn btn-dark btn-sm'>Vote down</button>
+                <button className='btn btn-dark btn-sm' value='upVote' onClick={this.handleVote}>Vote up</button>
+                <button className='btn btn-dark btn-sm' value='downVote' onClick={this.handleVote}>Vote down</button>
+                <Link to={`${this.props.match.params.id}/create-comment`} className='btn btn-dark btn-sm'>Comment</Link>
                 <button className='btn btn-dark btn-sm'>Edit</button>
                 <button className='btn btn-danger btn-sm'>Delete</button>
               </div>
@@ -71,7 +78,8 @@ function mapStateToProps(reducer) {
 function mapDispatchToProps(dispatch) {
   return {
     getSpecPost: (data) => dispatch(Action.getSpecPost(data)),
-    getSpecComments: (data) => dispatch(Action.getSpecComments(data))
+    getSpecComments: (data) => dispatch(Action.getSpecComments(data)),
+    // postPostVote: (data) => dispatch(Action.postPostVote(data)),
   }
 }
 

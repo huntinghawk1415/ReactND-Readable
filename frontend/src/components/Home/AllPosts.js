@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {formatDate} from '../CommonFx';
 
-class Recent extends Component {
+class AllPosts extends Component {
   render() {
     const {title, timestamp, body, votes, author, commentCount} = this.props;
     return (
@@ -33,4 +33,4 @@ class Recent extends Component {
   }
 }
 
-export default Recent
+export default AllPosts;

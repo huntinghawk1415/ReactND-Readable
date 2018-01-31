@@ -5,7 +5,7 @@ const CategoryList = (props) => {
   return (
     categories
       ? categories.categories.map(s => (
-        <option key={s.name} value={s.name}>{s.name}</option>
+        <option className='text-capitalize' key={s.name} value={s.name}>{s.name}</option>
       ))
       : null
   );

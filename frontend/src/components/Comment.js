@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {formatDate} from './CommonFx';
-import VoteUpDown from './VoteUpDown';
+import MdArrowDropUp from 'react-icons/lib/md/arrow-drop-up';
+import MdArrowDropDown from 'react-icons/lib/md/arrow-drop-down';
+import MdCreate from 'react-icons/lib/md/create';
 import MdClear from 'react-icons/lib/md/clear';
 
 class Comment extends Component {
@@ -24,9 +26,15 @@ class Comment extends Component {
             </div>
           </div>
         </div>
-        <div className='ml-auto'>
-          <VoteUpDown />
-        </div>
+        <button className='btn btn-light btn-sm ml-auto' title='Vote up'>
+          <MdArrowDropUp size={30}/>
+        </button>
+        <button className='btn btn-light btn-sm' title='Vote down'>
+          <MdArrowDropDown size={30}/>
+        </button>
+        <button className='btn btn-light btn-sm' title='Edit Comment'>
+          <MdCreate size={30}/>
+        </button>
         <button className='btn btn-light btn-sm' title='Delete'>
           <MdClear className='text-danger' size={30}/>
         </button>

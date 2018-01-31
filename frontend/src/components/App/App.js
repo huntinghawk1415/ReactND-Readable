@@ -6,6 +6,7 @@ import Home from '../Home/Home';
 import Posts from '../Posts/Posts';
 import SpecificPost from '../SpecificPost';
 import NewPost from '../NewPost';
+import NewComment from '../NewComment';
 import '../../style/App.css';
 
 class App extends Component {
@@ -29,8 +30,12 @@ class App extends Component {
                 component={NewPost}
               />
               <Route
-                path='/:id'
+                exact path='/:id'
                 component={SpecificPost}
+              />
+              <Route
+                exact path='/:id/create-comment'
+                component={NewComment}
               />
             </Switch>
           </div>

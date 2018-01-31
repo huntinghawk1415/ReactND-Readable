@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {fetchAllPosts} from '../../ProjectAPI';
-import Recent from './Recent';
+import AllPosts from './AllPosts';
+import SortBy from '../SortBy';
 import {connect} from 'react-redux';
 import * as Action from '../../actions';
 
@@ -14,8 +15,11 @@ class Home extends Component {
     const {homeData} = this.props
     return (
       <div className='container h-100'>
-        <div className='row display-4 pt-5 pb-4'>
-          Recent
+        <div className='row pt-5 pb-4'>
+          <div className='display-4 col'>
+            AllPosts
+          </div>
+          <SortBy />
         </div>
         <div>{
           homeData
@@ -25,7 +29,7 @@ class Home extends Component {
                   className='link-no-style text-dark'
                   to={`/${s.id}`}
                 >
-                  <Recent
+                  <AllPosts
                     title={s.title}
                     timestamp={s.timestamp}
                     body={s.body}

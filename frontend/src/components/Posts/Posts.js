@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {fetchAllPosts, fetchCatPosts, fetchCategories} from '../../ProjectAPI';
 import CategoricPosts from './CategoricPosts';
 import CategoryList from '../CategoryList';
+import SortBy from '../SortBy';
 import {connect} from 'react-redux';
 import * as Action from '../../actions';
 
@@ -30,6 +31,7 @@ class Posts extends Component {
               <CategoryList categories={categories}/>
             </select>
           </div>
+          <SortBy />
         </div>
         <div>{
           postsData
