@@ -6,6 +6,10 @@ import MdCreate from 'react-icons/lib/md/create';
 import MdClear from 'react-icons/lib/md/clear';
 
 class Comment extends Component {
+  handleVote = ({currentTarget}) => {
+    const {id, parentId, handleCommentVote} = this.props;
+    handleCommentVote(id, parentId, currentTarget.value);
+  }
   render() {
     const {author, timestamp, body, votes} = this.props;
     return (
@@ -26,10 +30,10 @@ class Comment extends Component {
             </div>
           </div>
         </div>
-        <button className='btn btn-light btn-sm ml-auto' title='Vote up'>
+        <button onClick={this.handleVote} className='btn btn-light btn-sm ml-auto' title='Vote up' value='upVote'>
           <MdArrowDropUp size={30}/>
         </button>
-        <button className='btn btn-light btn-sm' title='Vote down'>
+        <button onClick={this.handleVote} className='btn btn-light btn-sm' title='Vote down' value='downVote'>
           <MdArrowDropDown size={30}/>
         </button>
         <button className='btn btn-light btn-sm' title='Edit Comment'>

@@ -43,14 +43,6 @@ export const getCategories = (cats) => {
   };
 };
 
-// export const postPostVote = (id, vote) => {
-//   return {
-//     type: POST_POST_VOTE,
-//     id,
-//     vote,
-//   }
-// }
-
 export const sortHomeByDate = (func) => {
   return {
     type: SORT_HOME_BY_DATE,

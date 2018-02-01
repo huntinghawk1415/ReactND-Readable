@@ -3,7 +3,9 @@
     upvote/downvote, delete
     //Probably will leave this one out; ui looks and feels weird when added in
 
-3. Add upvote/downvote functionality
+3. Add delete functionality
+
+4. Add edit post/edit comment, comment, post post/post comment functionality
 
 6. Figure out how to change route for each category when chosen
 

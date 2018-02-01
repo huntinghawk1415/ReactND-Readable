@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchSpecPost, fetchComments} from '../ProjectAPI';
+import {fetchSpecPost, fetchComments, postVote, commentVote} from '../ProjectAPI';
 import {formatDate} from './CommonFx';
 import Comment from './Comment';
 import {Link} from 'react-router-dom';
@@ -14,6 +14,18 @@ class SpecificPost extends Component {
       .then(data => getSpecPost(data));
     fetchComments(id)
       .then(comments => getSpecComments(comments));
+  }
+  handleVote = ({target}, val) => {
+    const {id} = this.props.match.params;
+    postVote(id, target.value);
+    fetchSpecPost(id)
+      .then(data => this.props.getSpecPost(data));
+  }
+  handleCommentVote = (id, parentId, val) => {
+    commentVote(id, val);
+    fetchComments(parentId)
+      .then(data => this.props.getSpecComments(data));
+    //BUG -> Occasionally will nut update UI as expected. Although the server updates with the new vote count, the UI will skip a render/an error will occur (204) that will not allow it to update properly
   }
   render() {
     const {specPostData, commentsData} = this.props;
@@ -38,8 +50,8 @@ class SpecificPost extends Component {
             </div>
             <div className='col d-flex justify-content-end'>
               <div className='btn-group'>
-                <button className='btn btn-dark btn-sm' value='upVote' onClick={this.handleVote}>Vote up</button>
-                <button className='btn btn-dark btn-sm' value='downVote' onClick={this.handleVote}>Vote down</button>
+                <button className='btn btn-dark btn-sm' title='postVote' onClick={this.handleVote} value='upVote'>Vote up</button>
+                <button className='btn btn-dark btn-sm' title='postVote' onClick={this.handleVote} value='downVote'>Vote down</button>
                 <Link to={`${this.props.match.params.id}/create-comment`} className='btn btn-dark btn-sm'>Comment</Link>
                 <button className='btn btn-dark btn-sm'>Edit</button>
                 <button className='btn btn-danger btn-sm'>Delete</button>
@@ -52,17 +64,20 @@ class SpecificPost extends Component {
               ? commentsData.map(s => (
                 <div key={s.id}>
                   <Comment
+                    id={s.id}
+                    parentId={s.parentId}
                     author={s.author}
                     timestamp={s.timestamp}
                     body={s.body}
                     votes={s.voteScore}
+                    handleCommentVote={this.handleCommentVote}
                   />
                 </div>
               ))
               : <p>No comments yet</p>
           }</div>
         </div>
-      ) : <div className='display-3 text-center mt-5'>This Post Doesn't Exist :(</div>;
+      ) : <div className='display-3 text-center mt-5'>This post has either moved or does not exist anymore :(</div>;
   }
 }
 
@@ -74,7 +89,6 @@ function mapDispatchToProps(dispatch) {
   return {
     getSpecPost: (data) => dispatch(Action.getSpecPost(data)),
     getSpecComments: (data) => dispatch(Action.getSpecComments(data)),
-    // postPostVote: (data) => dispatch(Action.postPostVote(data)),
   };
 }
 

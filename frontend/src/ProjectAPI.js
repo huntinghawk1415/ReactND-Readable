@@ -1,6 +1,8 @@
-// const uri = 'http://localhost:3001';
-const uri = 'http://react-readable-huntinghawk.c9users.io:8080';
+const uri = 'http://localhost:3001';
+// const uri = 'http://react-readable-huntinghawk.c9users.io:8080';
 const headers = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
   'Authorization': 'why-you-do-dis',
 };
 
@@ -38,7 +40,16 @@ export const postVote = (id, vote) =>
   fetch(`${uri}/posts/${id}`, {
     method: 'POST',
     headers,
-    body: JSON.stringify({options:vote}),
+    body: JSON.stringify({option: vote}),
   }).then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => data)
+    .catch(err => console.log(err));
+
+export const commentVote = (id, vote) =>
+  fetch(`${uri}/comments/${id}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({option: vote}),
+  }).then(response => response.json())
+    .then(data => data)
     .catch(err => console.log(err));
