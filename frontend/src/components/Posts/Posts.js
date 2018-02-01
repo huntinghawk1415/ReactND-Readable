@@ -58,7 +58,7 @@ class Posts extends Component {
           />
         </div>
         <div>{
-          postsData
+          postsData && postsData.length
             ? postsData.map(s => (
               <div key={s.id}>
                 <Link
@@ -76,7 +76,7 @@ class Posts extends Component {
                 </Link>
               </div>
             ))
-            : null
+            : <div className='display-4'>There are no Posts! Click <Link to='/create-post'>here</Link> to make one</div>
         }</div>
       </div>
     );

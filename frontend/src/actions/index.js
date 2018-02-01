@@ -7,6 +7,8 @@ export const SORT_HOME_BY_DATE = 'SORT_HOME_BY_DATE';
 export const SORT_HOME_BY_VOTE = 'SORT_HOME_BY_VOTE';
 export const SORT_POSTS_BY_DATE = 'SORT_POSTS_BY_DATE';
 export const SORT_POSTS_BY_VOTE = 'SORT_POSTS_BY_VOTE';
+export const DELETE_POST = 'DELETE_POST';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 export const getAllPosts = (posts) => {
   return {
@@ -68,5 +70,17 @@ export const sortPostsByVote = (func) => {
   return {
     type: SORT_POSTS_BY_VOTE,
     func,
+  };
+};
+
+export const deletePost = () => {
+  return {
+    type: DELETE_POST,
+  };
+};
+
+export const deleteComment = () => {
+  return {
+    type: DELETE_COMMENT,
   };
 };

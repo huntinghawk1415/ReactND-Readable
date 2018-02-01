@@ -10,6 +10,11 @@ class Comment extends Component {
     const {id, parentId, handleCommentVote} = this.props;
     handleCommentVote(id, parentId, currentTarget.value);
   }
+  handleDelete = () => {
+    const {id, handleCommentDelete} = this.props;
+    console.log('deleted ' + id)
+    handleCommentDelete(id);
+  }
   render() {
     const {author, timestamp, body, votes} = this.props;
     return (
@@ -39,11 +44,11 @@ class Comment extends Component {
         <button className='btn btn-light btn-sm' title='Edit Comment'>
           <MdCreate size={30}/>
         </button>
-        <button className='btn btn-light btn-sm' title='Delete'>
+        <button onClick={this.handleDelete} className='btn btn-light btn-sm' title='Delete'>
           <MdClear className='text-danger' size={30}/>
         </button>
       </div>
-    )
+    );
   }
 }
 

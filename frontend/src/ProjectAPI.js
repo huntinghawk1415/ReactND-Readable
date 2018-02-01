@@ -1,5 +1,5 @@
-const uri = 'http://localhost:3001';
-// const uri = 'http://react-readable-huntinghawk.c9users.io:8080';
+// const uri = 'http://localhost:3001';
+const uri = 'http://react-readable-huntinghawk.c9users.io:8080';
 const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
@@ -8,31 +8,31 @@ const headers = {
 
 export const fetchAllPosts = () =>
   fetch(`${uri}/posts`, {headers})
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => data)
     .catch(err => console.log(err));
 
 export const fetchSpecPost = id =>
   fetch(`${uri}/posts/${id}`, {headers})
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => data)
     .catch(err => console.log(err));
 
 export const fetchComments = id =>
   fetch(`${uri}/posts/${id}/comments`, {headers})
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => data)
     .catch(err => console.log(err));
 
 export const fetchCategories = () =>
   fetch(`${uri}/categories`, {headers})
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => data)
     .catch(err => console.log(err));
 
 export const fetchCatPosts = cat =>
   fetch(`${uri}/${cat}/posts`, {headers})
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => data)
     .catch(err => console.log(err));
 
@@ -41,7 +41,7 @@ export const postVote = (id, vote) =>
     method: 'POST',
     headers,
     body: JSON.stringify({option: vote}),
-  }).then(response => response.json())
+  }).then(res => res.json())
     .then(data => data)
     .catch(err => console.log(err));
 
@@ -50,6 +50,20 @@ export const commentVote = (id, vote) =>
     method: 'POST',
     headers,
     body: JSON.stringify({option: vote}),
-  }).then(response => response.json())
+  }).then(res => res.json())
     .then(data => data)
+    .catch(err => console.log(err));
+
+export const deletePost = (id) =>
+  fetch(`${uri}/posts/${id}`, {
+    method: 'DELETE',
+    headers,
+  }).then(res => res.json())
+    .catch(err => console.log(err));
+
+export const deleteComment = (id) =>
+  fetch(`${uri}/comments/${id}`, {
+    method: 'DELETE',
+    headers,
+  }).then(res => res.json())
     .catch(err => console.log(err));

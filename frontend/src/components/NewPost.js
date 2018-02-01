@@ -1,7 +1,17 @@
 import React, {Component} from 'react';
+import CategoryList from './CategoryList';
+import {connect} from 'react-redux';
+import * as Action from '../actions';
+import {fetchCategories} from '../ProjectAPI';
 
 class NewPost extends Component {
+  componentDidMount() {
+    fetchCategories()
+      .then(data => this.props.getCategories(data));
+  }
   render() {
+    const {categories} = this.props;
+    console.log(this.props)
     return (
       <div className='container h-100'>
         <div className='row display-4 pt-5 pb-4'>
@@ -53,11 +63,7 @@ class NewPost extends Component {
             </label>
             <select className="form-control">
               <option disabled selected>Choose</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              <CategoryList categories={categories}/>
             </select>
           </div>
           <div className='text-right'>
@@ -72,4 +78,18 @@ class NewPost extends Component {
   }
 }
 
-export default NewPost;
+function mapStateToProps(reducer) {
+  const {categories, getCategories} = reducer;
+  return {
+    getCategories,
+    categories,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getCategories: (data) => dispatch(Action.getCategories(data)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);

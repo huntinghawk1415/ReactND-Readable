@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {fetchSpecPost, fetchComments, postVote, commentVote} from '../ProjectAPI';
+// import {fetchSpecPost, fetchComments, postVote, commentVote} from '../ProjectAPI';
+import * as API from '../ProjectAPI';
 import {formatDate} from './CommonFx';
 import Comment from './Comment';
 import {Link} from 'react-router-dom';
@@ -8,28 +9,38 @@ import * as Action from '../actions';
 
 class SpecificPost extends Component {
   componentDidMount() {
-    const {getSpecPost, getSpecComments} = this.props;
-    const {id} = this.props.match.params;
-    fetchSpecPost(id)
-      .then(data => getSpecPost(data));
-    fetchComments(id)
-      .then(comments => getSpecComments(comments));
+    this.pageRefresh();
   }
-  handleVote = ({target}, val) => {
+  handlePostVote = ({target}) => {
     const {id} = this.props.match.params;
-    postVote(id, target.value);
-    fetchSpecPost(id)
-      .then(data => this.props.getSpecPost(data));
+    API.postVote(id, target.value);
+    this.pageRefresh();
   }
   handleCommentVote = (id, parentId, val) => {
-    commentVote(id, val);
-    fetchComments(parentId)
-      .then(data => this.props.getSpecComments(data));
-    //BUG -> Occasionally will nut update UI as expected. Although the server updates with the new vote count, the UI will skip a render/an error will occur (204) that will not allow it to update properly
+    API.commentVote(id, val);
+    this.pageRefresh();
+    //BUG -> Occasionally will not update UI as expected. Although the server updates with the new vote count, the UI will skip a render/an 'error' will occur (204) that will not allow it to update properly
+  }
+  handlePostDelete = () => {
+    const {id} = this.props.match.params;
+    API.deletePost(id);
+    this.props.updateDeletedPost();
+  }
+  handleCommentDelete = (id) => {
+    API.deleteComment(id);
+    this.pageRefresh();
+  }
+  pageRefresh = () => {
+    const {getSpecPost, getSpecComments} = this.props;
+    const {id} = this.props.match.params;
+    API.fetchSpecPost(id)
+      .then(data => getSpecPost(data));
+    API.fetchComments(id)
+      .then(comments => getSpecComments(comments));
   }
   render() {
     const {specPostData, commentsData} = this.props;
-    return specPostData && !specPostData.hasOwnProperty('error')
+    return specPostData && specPostData.hasOwnProperty('id')
       ? (
         <div className='container h-100'>
           <h1 className='row ml-auto display-4 pt-5 pb-4'>
@@ -50,11 +61,11 @@ class SpecificPost extends Component {
             </div>
             <div className='col d-flex justify-content-end'>
               <div className='btn-group'>
-                <button className='btn btn-dark btn-sm' title='postVote' onClick={this.handleVote} value='upVote'>Vote up</button>
-                <button className='btn btn-dark btn-sm' title='postVote' onClick={this.handleVote} value='downVote'>Vote down</button>
+                <button className='btn btn-dark btn-sm' onClick={this.handlePostVote} value='upVote'>Vote up</button>
+                <button className='btn btn-dark btn-sm' onClick={this.handlePostVote} value='downVote'>Vote down</button>
                 <Link to={`${this.props.match.params.id}/create-comment`} className='btn btn-dark btn-sm'>Comment</Link>
                 <button className='btn btn-dark btn-sm'>Edit</button>
-                <button className='btn btn-danger btn-sm'>Delete</button>
+                <Link to={`/posts`} className='btn btn-danger btn-sm' onClick={this.handlePostDelete}>Delete</Link>
               </div>
             </div>
           </div>
@@ -71,6 +82,7 @@ class SpecificPost extends Component {
                     body={s.body}
                     votes={s.voteScore}
                     handleCommentVote={this.handleCommentVote}
+                    handleCommentDelete={this.handleCommentDelete}
                   />
                 </div>
               ))
@@ -89,6 +101,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getSpecPost: (data) => dispatch(Action.getSpecPost(data)),
     getSpecComments: (data) => dispatch(Action.getSpecComments(data)),
+    updateDeletedPost: (data) => dispatch(Action.deletePost(data)),
   };
 }
 

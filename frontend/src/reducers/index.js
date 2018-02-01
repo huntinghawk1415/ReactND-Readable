@@ -38,6 +38,11 @@ const reducer = (state = initialState, action) => {
     case Action.SORT_POSTS_BY_VOTE:
       newState.postsData = action.func(newState.postsData);
       return newState;
+    case Action.DELETE_POST:
+      newState.specPostData = null;
+      return newState;
+    case Action.DELETE_COMMENT:
+      return newState;
     default:
       console.log('returning initial state');
       return state;
