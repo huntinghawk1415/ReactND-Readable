@@ -26,39 +26,17 @@ const reducer = (state = initialState, action) => {
     case Action.GET_CATEGORIES:
       newState.categories = action.cats;
       return newState;
-    // case Action.POST_POST_VOTE:
-    //   if(action.vote === 'upVote') {
-    //     newState.map(s =>
-    //       s.id === action.id
-    //         ? s.voteScore++
-    //         : s
-    //     )
-    //   } else if (action.vote === 'downVote') {
-    //     var stateMapped = newState.map(s =>
-    //       s.id === action.id
-    //         ? s.voteScore--
-    //         : s
-    //     )
-    //     return stateMapped
-    //   } else {
-    //     console.log('failed', action.id, action.vote)
-    //     return state
-    //   }
     case Action.SORT_HOME_BY_DATE:
       newState.homeData = action.func(newState.homeData);
-      console.log('home date', action.func)
       return newState;
     case Action.SORT_HOME_BY_VOTE:
       newState.homeData = action.func(newState.homeData);
-      console.log('home vote', action.func)
       return newState;
     case Action.SORT_POSTS_BY_DATE:
       newState.postsData = action.func(newState.postsData);
-      console.log(newState.postsData, action.func)
       return newState;
     case Action.SORT_POSTS_BY_VOTE:
       newState.postsData = action.func(newState.postsData);
-      console.log(newState.postsData, action.func)
       return newState;
     default:
       console.log('returning initial state');

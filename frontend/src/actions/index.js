@@ -3,7 +3,6 @@ export const GET_CAT_POSTS = 'GET_CAT_POSTS';
 export const GET_SPEC_COMMENTS = 'GET_SPEC_COMMENTS';
 export const GET_SPEC_POST = 'GET_SPEC_POST';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
-// export const POST_POST_VOTE = 'POST_POST_VOTE';
 export const SORT_HOME_BY_DATE = 'SORT_HOME_BY_DATE';
 export const SORT_HOME_BY_VOTE = 'SORT_HOME_BY_VOTE';
 export const SORT_POSTS_BY_DATE = 'SORT_POSTS_BY_DATE';

@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-import {
-  fetchSpecPost, 
-  fetchComments, 
-  // postVote
-}from '../ProjectAPI';
+import {fetchSpecPost, fetchComments} from '../ProjectAPI';
 import {formatDate} from './CommonFx';
 import Comment from './Comment';
 import {Link} from 'react-router-dom';
@@ -19,13 +15,7 @@ class SpecificPost extends Component {
     fetchComments(id)
       .then(comments => getSpecComments(comments));
   }
-  // handleVote = ({target}) => {
-  //   const {postPostVote} = this.props;
-  //   postVote(this.props.match.params.id, target.value)
-  //     .then(data => postPostVote(this.props.match.params.id, target.value))
-  // }
   render() {
-    console.log(this.props)
     const {specPostData, commentsData} = this.props;
     return specPostData && !specPostData.hasOwnProperty('error')
       ? (
