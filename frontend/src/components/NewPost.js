@@ -3,11 +3,15 @@ import CategoryList from './CategoryList';
 import {connect} from 'react-redux';
 import * as Action from '../actions';
 import {fetchCategories} from '../ProjectAPI';
+// import uuid from 'uuid/v4';
 
 class NewPost extends Component {
   componentDidMount() {
     fetchCategories()
       .then(data => this.props.getCategories(data));
+  }
+  handleSubmit = () => {
+    
   }
   render() {
     const {categories} = this.props;
@@ -27,6 +31,7 @@ class NewPost extends Component {
             <input
               type='text'
               required
+              name='author'
               className='form-control'
               placeholder="Who's writing this?" />
           </div>
@@ -39,6 +44,7 @@ class NewPost extends Component {
             <input
               type='text'
               required
+              name='title'
               className='form-control'
               placeholder='What is your post about?' />
           </div>
@@ -51,6 +57,7 @@ class NewPost extends Component {
             <textarea
               type='text'
               required
+              name='body'
               className='form-control'
               placeholder='Write your post here'
             ></textarea>
@@ -61,7 +68,7 @@ class NewPost extends Component {
                 Choose a Category
               </h4>
             </label>
-            <select className="form-control">
+            <select name='category' className="form-control">
               <option disabled selected>Choose</option>
               <CategoryList categories={categories}/>
             </select>
