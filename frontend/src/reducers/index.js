@@ -44,7 +44,6 @@ const reducer = (state = initialState, action) => {
     case Action.DELETE_COMMENT:
       return newState;
     default:
-      console.log('returning initial state');
       return state;
   }
 };

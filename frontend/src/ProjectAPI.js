@@ -1,5 +1,4 @@
-// const uri = 'http://localhost:3001';
-const uri = 'http://react-readable-huntinghawk.c9users.io:8080';
+const uri = 'http://localhost:3001';
 const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
@@ -54,16 +53,60 @@ export const commentVote = (id, vote) =>
     .then(data => data)
     .catch(err => console.log(err));
 
-export const deletePost = (id) =>
+export const deletePost = id =>
   fetch(`${uri}/posts/${id}`, {
     method: 'DELETE',
     headers,
   }).then(res => res.json())
+    .then(data => data)
     .catch(err => console.log(err));
 
-export const deleteComment = (id) =>
+export const deleteComment = id =>
   fetch(`${uri}/comments/${id}`, {
     method: 'DELETE',
     headers,
   }).then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+export const newPost = obj =>
+  fetch(`${uri}/posts`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(obj),
+  }).then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+export const newComment = obj =>
+  fetch(`${uri}/comments`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(obj),
+  }).then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+export const editPost = (id, obj) =>
+  fetch(`${uri}/posts/${id}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(obj),
+  }).then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+export const getCommentDetails = id =>
+  fetch(`${uri}/comments/${id}`, {headers})
+    .then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+export const editComment = (id, obj) =>
+  fetch(`${uri}/comments/${id}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(obj)
+  }).then(res => res.json())
+    .then(data => data)
     .catch(err => console.log(err));

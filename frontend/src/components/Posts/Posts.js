@@ -52,7 +52,7 @@ class Posts extends Component {
               <CategoryList categories={categories}/>
             </select>
           </div>
-          <SortBy 
+          <SortBy
             handleDateChange={this.handleDateChange}
             handleScoreChange={this.handleScoreChange}
           />
@@ -63,7 +63,7 @@ class Posts extends Component {
               <div key={s.id}>
                 <Link
                   className='link-no-style text-dark'
-                  to={`/${s.id}`}
+                  to={`/${s.category}/${s.id}`}
                 >
                   <CategoricPosts
                     title={s.title}

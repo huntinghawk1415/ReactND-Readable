@@ -40,7 +40,7 @@ class Home extends Component {
           <div className='display-4 col'>
             All Posts
           </div>
-          <SortBy 
+          <SortBy
             handleDateChange={this.handleDateChange}
             handleScoreChange={this.handleScoreChange}
           />
@@ -51,7 +51,7 @@ class Home extends Component {
               <div key={s.id}>
                 <Link
                   className='link-no-style text-dark'
-                  to={`/${s.id}`}
+                  to={`/${s.category}/${s.id}`}
                 >
                   <AllPosts
                     title={s.title}

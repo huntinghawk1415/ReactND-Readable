@@ -4,19 +4,20 @@ import MdArrowDropUp from 'react-icons/lib/md/arrow-drop-up';
 import MdArrowDropDown from 'react-icons/lib/md/arrow-drop-down';
 import MdCreate from 'react-icons/lib/md/create';
 import MdClear from 'react-icons/lib/md/clear';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Comment extends Component {
   handleVote = ({currentTarget}) => {
-    const {id, parentId, handleCommentVote} = this.props;
-    handleCommentVote(id, parentId, currentTarget.value);
+    const {id, handleCommentVote} = this.props;
+    handleCommentVote(id, currentTarget.value);
   }
   handleDelete = () => {
     const {id, handleCommentDelete} = this.props;
-    console.log('deleted ' + id)
     handleCommentDelete(id);
   }
   render() {
-    const {author, timestamp, body, votes} = this.props;
+    const {author, timestamp, body, votes, id, specPostData} = this.props;
     return (
       <div className='row mb-2 bg-light'>
         <div className='col-8'>
@@ -41,9 +42,9 @@ class Comment extends Component {
         <button onClick={this.handleVote} className='btn btn-light btn-sm' title='Vote down' value='downVote'>
           <MdArrowDropDown size={30}/>
         </button>
-        <button className='btn btn-light btn-sm' title='Edit Comment'>
-          <MdCreate size={30}/>
-        </button>
+        <Link to={`/${specPostData.category}/${specPostData.id}/comment=${id}/edit-comment`} className='btn btn-light btn-sm pt-3' title='Edit Comment'>
+          <MdCreate size={25}/>
+        </Link>
         <button onClick={this.handleDelete} className='btn btn-light btn-sm' title='Delete'>
           <MdClear className='text-danger' size={30}/>
         </button>
@@ -52,4 +53,11 @@ class Comment extends Component {
   }
 }
 
-export default Comment;
+function mapStateToProps(reducer) {
+  const {specPostData} = reducer;
+  return {
+    specPostData,
+  };
+}
+
+export default connect(mapStateToProps)(Comment);

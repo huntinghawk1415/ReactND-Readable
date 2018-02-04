@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import CategoryList from './CategoryList';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as Action from '../actions';
-import {fetchCategories} from '../ProjectAPI';
-// import uuid from 'uuid/v4';
+import {fetchCategories, newPost} from '../ProjectAPI';
+import uuid from 'uuid/v4';
 
 class NewPost extends Component {
   componentDidMount() {
@@ -11,11 +12,18 @@ class NewPost extends Component {
       .then(data => this.props.getCategories(data));
   }
   handleSubmit = () => {
-    
+    const info = {
+      id: uuid(),
+      timestamp: new Date().getTime(),
+      author: document.getElementById('author').value,
+      title: document.getElementById('title').value,
+      body: document.getElementById('body').value,
+      category: document.getElementById('category').value,
+    }
+    newPost(info);
   }
   render() {
     const {categories} = this.props;
-    console.log(this.props)
     return (
       <div className='container h-100'>
         <div className='row display-4 pt-5 pb-4'>
@@ -24,11 +32,10 @@ class NewPost extends Component {
         <form>
           <div className='form-group'>
             <label htmlFor='name'>
-              <h4>
-                Name
-              </h4>
+              <h4>Name</h4>
             </label>
             <input
+              id='author'
               type='text'
               required
               name='author'
@@ -37,11 +44,10 @@ class NewPost extends Component {
           </div>
           <div className='form-group'>
             <label htmlFor='title'>
-              <h4>
-                Title
-              </h4>
+              <h4>Title</h4>
             </label>
             <input
+              id='title'
               type='text'
               required
               name='title'
@@ -50,11 +56,10 @@ class NewPost extends Component {
           </div>
           <div className='form-group'>
             <label htmlFor='body'>
-              <h4>
-                Body
-              </h4>
+              <h4>Body</h4>
             </label>
             <textarea
+              id='body'
               type='text'
               required
               name='body'
@@ -64,20 +69,21 @@ class NewPost extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="category">
-              <h4>
-                Choose a Category
-              </h4>
+              <h4>Choose a Category</h4>
             </label>
-            <select name='category' className="form-control">
+            <select id='category' name='category' className="form-control">
               <option disabled selected>Choose</option>
               <CategoryList categories={categories}/>
             </select>
           </div>
           <div className='text-right'>
-            <button
-              type='submit'
-              className='btn btn-dark'
-            >Submit</button>
+            <Link to='/posts'>
+              <button
+                onClick={this.handleSubmit}
+                type='submit'
+                className='btn btn-dark'
+              >Submit</button>
+            </Link>
           </div>
         </form>
       </div>

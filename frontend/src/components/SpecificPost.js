@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import {fetchSpecPost, fetchComments, postVote, commentVote} from '../ProjectAPI';
 import * as API from '../ProjectAPI';
 import {formatDate} from './CommonFx';
 import Comment from './Comment';
@@ -16,10 +15,9 @@ class SpecificPost extends Component {
     API.postVote(id, target.value);
     this.pageRefresh();
   }
-  handleCommentVote = (id, parentId, val) => {
-    API.commentVote(id, val);
+  handleCommentVote = (id, vote) => {
+    API.commentVote(id, vote);
     this.pageRefresh();
-    //BUG -> Occasionally will not update UI as expected. Although the server updates with the new vote count, the UI will skip a render/an 'error' will occur (204) that will not allow it to update properly
   }
   handlePostDelete = () => {
     const {id} = this.props.match.params;
@@ -40,6 +38,7 @@ class SpecificPost extends Component {
   }
   render() {
     const {specPostData, commentsData} = this.props;
+    const {id} = this.props.match.params;
     return specPostData && specPostData.hasOwnProperty('id')
       ? (
         <div className='container h-100'>
@@ -63,8 +62,8 @@ class SpecificPost extends Component {
               <div className='btn-group'>
                 <button className='btn btn-dark btn-sm' onClick={this.handlePostVote} value='upVote'>Vote up</button>
                 <button className='btn btn-dark btn-sm' onClick={this.handlePostVote} value='downVote'>Vote down</button>
-                <Link to={`${this.props.match.params.id}/create-comment`} className='btn btn-dark btn-sm'>Comment</Link>
-                <button className='btn btn-dark btn-sm'>Edit</button>
+                <Link to={`${this.props.location.pathname}/create-comment`} className='btn btn-dark btn-sm'>Comment</Link>
+                <Link to={`${this.props.location.pathname}/edit-post`} className='btn btn-dark btn-sm'>Edit</Link>
                 <Link to={`/posts`} className='btn btn-danger btn-sm' onClick={this.handlePostDelete}>Delete</Link>
               </div>
             </div>

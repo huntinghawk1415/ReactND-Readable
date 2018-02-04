@@ -7,6 +7,8 @@ import Posts from '../Posts/Posts';
 import SpecificPost from '../SpecificPost';
 import NewPost from '../NewPost';
 import NewComment from '../NewComment';
+import EditPost from '../EditPost';
+import EditComment from '../EditComment';
 import '../../style/App.css';
 
 class App extends Component {
@@ -30,12 +32,20 @@ class App extends Component {
                 component={NewPost}
               />
               <Route
-                exact path='/:id'
+                exact path='/:category/:id'
                 component={SpecificPost}
               />
               <Route
-                exact path='/:id/create-comment'
+                exact path='/:category/:id/create-comment'
                 component={NewComment}
+              />
+              <Route
+                exact path='/:category/:id/edit-post'
+                component={EditPost}
+              />
+              <Route
+                exact path='/:category/:postid/comment=:commentid/edit-comment'
+                component={EditComment}
               />
             </Switch>
           </div>
