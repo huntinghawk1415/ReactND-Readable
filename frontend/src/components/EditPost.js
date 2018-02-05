@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {editPost} from '../ProjectAPI';
+import {getSpecPost} from '../actions';
 
 class EditPost extends Component {
   handleSubmit = () => {
@@ -69,6 +70,7 @@ function mapStateToProps(reducer) {
   const {specPostData} = reducer;
   return {
     specPostData,
+    getSpecPost,
   };
 }
 

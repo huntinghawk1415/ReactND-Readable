@@ -21,6 +21,7 @@ const reducer = (state = initialState, action) => {
       newState.commentsData = action.specComments;
       return newState;
     case Action.GET_SPEC_POST:
+      newState.specPost = null;
       newState.specPostData = action.specPost;
       return newState;
     case Action.GET_CATEGORIES:

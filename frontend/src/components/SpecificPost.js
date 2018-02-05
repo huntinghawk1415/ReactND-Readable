@@ -38,7 +38,6 @@ class SpecificPost extends Component {
   }
   render() {
     const {specPostData, commentsData} = this.props;
-    const {id} = this.props.match.params;
     return specPostData && specPostData.hasOwnProperty('id')
       ? (
         <div className='container h-100'>
@@ -82,6 +81,7 @@ class SpecificPost extends Component {
                     votes={s.voteScore}
                     handleCommentVote={this.handleCommentVote}
                     handleCommentDelete={this.handleCommentDelete}
+                    refresh={this.pageRefresh}
                   />
                 </div>
               ))

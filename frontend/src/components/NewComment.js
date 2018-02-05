@@ -6,7 +6,7 @@ import uuid from 'uuid/v4';
 
 class NewComment extends Component {
   handleSubmit = () => {
-    const {parentId, history, location} = this.props;
+    const {location} = this.props;
     const info = {
       id: uuid(),
       parentId: location.pathname.slice(location.pathname.search(/\D\//) + 2, location.pathname.search('/c')),

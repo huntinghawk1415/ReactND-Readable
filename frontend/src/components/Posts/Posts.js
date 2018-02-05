@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {fetchAllPosts, fetchCatPosts, fetchCategories} from '../../ProjectAPI';
+import {fetchAllPosts, fetchCatPosts} from '../../ProjectAPI';
 import CategoricPosts from './CategoricPosts';
-import CategoryList from '../CategoryList';
 import SortBy from '../SortBy';
 import {connect} from 'react-redux';
 import * as Action from '../../actions';
@@ -10,15 +9,22 @@ import * as CommonFx from '../CommonFx';
 
 class Posts extends Component {
   componentDidMount() {
-    fetchAllPosts()
-      .then(data => this.props.getCatPosts(data));
-    fetchCategories()
-      .then(data => this.props.getCategories(data));
+    const {getCatPosts, location} = this.props;
+    const uri = location.pathname.slice(1, location.pathname.length)
+    uri === 'all'
+    ? fetchAllPosts()
+        .then(data => getCatPosts(data))
+    : fetchCatPosts(uri)
+        .then(data => getCatPosts(data))
   }
-  handleClick = (e) => {
-    const input = e.target.value;
-    fetchCatPosts(input)
-      .then(data => this.props.getCatPosts(data));
+  handleClick = ({target}) => {
+    const {getCatPosts} = this.props;
+    console.log(target.value);
+    target.value !== 'all'
+    ? fetchCatPosts(target.value)
+        .then(data => getCatPosts(data))
+    : fetchAllPosts()
+        .then(data => getCatPosts(data))
   }
   handleDateChange = (str) => {
     const {sortPostsByDate} = this.props;
@@ -40,17 +46,28 @@ class Posts extends Component {
       this.forceUpdate();
     }
   }
+  update = () => {
+    const {getCatPosts, location} = this.props;
+    const uri = location.pathname.slice(1, location.pathname.length)
+    uri === 'all'
+    ? fetchAllPosts()
+        .then(data => getCatPosts(data))
+    : fetchCatPosts(uri)
+        .then(data => getCatPosts(data))
+  }
   render() {
-    const {postsData, categories} = this.props;
+    const {postsData} = this.props;
     return (
       <div className='container h-100'>
         <div className='row display-4 pt-5 pb-4'>
           <div className='col'>Posts</div>
           <div className='col ml-auto mt-auto'>
-            <select onChange={this.handleClick} className="form-control">
-              <option selected value='none' disabled>Choose a category</option>
-              <CategoryList categories={categories}/>
-            </select>
+            <div className='btn-group'>
+              <Link to='/all'><button onClick={this.handleClick} className='btn btn-primary btn-sm mt-2' value='all'>All</button></Link>
+              <Link to='/react'><button onClick={this.handleClick} className='btn btn-dark btn-sm ml-2 mt-2' value='react'>React</button></Link>
+              <Link to='/redux'><button onClick={this.handleClick} className='btn btn-dark btn-sm ml-2 mt-2' value='redux'>Redux</button></Link>
+              <Link to='/udacity'><button onClick={this.handleClick} className='btn btn-dark btn-sm ml-2 mt-2' value='udacity'>Udacity</button></Link>
+            </div>
           </div>
           <SortBy
             handleDateChange={this.handleDateChange}
@@ -61,19 +78,17 @@ class Posts extends Component {
           postsData && postsData.length
             ? postsData.map(s => (
               <div key={s.id}>
-                <Link
-                  className='link-no-style text-dark'
-                  to={`/${s.category}/${s.id}`}
-                >
-                  <CategoricPosts
-                    title={s.title}
-                    timestamp={s.timestamp}
-                    body={s.body}
-                    votes={s.voteScore}
-                    author={s.author}
-                    commentCount={s.commentCount}
-                  />
-                </Link>
+                <CategoricPosts
+                  id={s.id}
+                  title={s.title}
+                  timestamp={s.timestamp}
+                  body={s.body}
+                  votes={s.voteScore}
+                  author={s.author}
+                  commentCount={s.commentCount}
+                  category={s.category}
+                  update={this.update}
+                />
               </div>
             ))
             : <div className='display-4'>There are no Posts! Click <Link to='/create-post'>here</Link> to make one</div>

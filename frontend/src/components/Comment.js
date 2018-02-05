@@ -9,17 +9,23 @@ import {connect} from 'react-redux';
 
 class Comment extends Component {
   handleVote = ({currentTarget}) => {
-    const {id, handleCommentVote} = this.props;
+    const {id, handleCommentVote, refresh} = this.props;
     handleCommentVote(id, currentTarget.value);
+    setTimeout(function () {
+      refresh();
+    }, 200);
   }
   handleDelete = () => {
-    const {id, handleCommentDelete} = this.props;
+    const {id, handleCommentDelete, refresh} = this.props;
     handleCommentDelete(id);
+    setTimeout(function () {
+      refresh();
+    }, 200);
   }
   render() {
     const {author, timestamp, body, votes, id, specPostData} = this.props;
     return (
-      <div className='row mb-2 bg-light'>
+      <div className='row mb-2 bg-light p-3'>
         <div className='col-8'>
           <div className='row'>
             <div className='col-2 d-flex justify-content-center align-items-center bg-dark text-light'>

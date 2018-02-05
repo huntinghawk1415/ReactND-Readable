@@ -77,7 +77,7 @@ class NewPost extends Component {
             </select>
           </div>
           <div className='text-right'>
-            <Link to='/posts'>
+            <Link to='/all'>
               <button
                 onClick={this.handleSubmit}
                 type='submit'

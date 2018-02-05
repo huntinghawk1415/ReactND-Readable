@@ -19,8 +19,14 @@ const Navbar = () => {
           <li className='nav-item'>
             <Link
               className='nav-link'
-              to='/posts'
+              to='/all'
             >Posts</Link>
+          </li>
+          <li className='nav-item'>
+            <Link
+              className='nav-link'
+              to='/categories'
+            >Categories</Link>
           </li>
         </ul>
       </div>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import {fetchAllPosts} from '../../ProjectAPI';
 import AllPosts from './AllPosts';
 import SortBy from '../SortBy';
@@ -32,6 +31,11 @@ class Home extends Component {
       this.forceUpdate();
     }
   }
+  update = () => {
+    fetchAllPosts()
+      .then(data => this.props.getAllPosts(data));
+    this.forceUpdate();
+  }
   render() {
     const {homeData} = this.props;
     return (
@@ -49,19 +53,17 @@ class Home extends Component {
           homeData
             ? homeData.map(s => (
               <div key={s.id}>
-                <Link
-                  className='link-no-style text-dark'
-                  to={`/${s.category}/${s.id}`}
-                >
-                  <AllPosts
-                    title={s.title}
-                    timestamp={s.timestamp}
-                    body={s.body}
-                    votes={s.voteScore}
-                    author={s.author}
-                    commentCount={s.commentCount}
-                  />
-                </Link>
+                <AllPosts
+                  id={s.id}
+                  title={s.title}
+                  timestamp={s.timestamp}
+                  body={s.body}
+                  votes={s.voteScore}
+                  author={s.author}
+                  commentCount={s.commentCount}
+                  category={s.category}
+                  update={this.update}
+                />
               </div>
             ))
             : null

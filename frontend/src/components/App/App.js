@@ -4,6 +4,7 @@ import {Switch, Route, Link} from 'react-router-dom';
 import MdAddCircleOutline from 'react-icons/lib/md/add-circle-outline';
 import Home from '../Home/Home';
 import Posts from '../Posts/Posts';
+import Categories from '../Categories';
 import SpecificPost from '../SpecificPost';
 import NewPost from '../NewPost';
 import NewComment from '../NewComment';
@@ -24,11 +25,15 @@ class App extends Component {
                 component={Home}
               />
               <Route
-                exact path='/posts'
+                exact path='/all'
                 component={Posts}
               />
               <Route
-                path='/create-post'
+                exact path='/categories'
+                component={Categories}
+              />
+              <Route
+                exact path='/create-post'
                 component={NewPost}
               />
               <Route
@@ -46,6 +51,10 @@ class App extends Component {
               <Route
                 exact path='/:category/:postid/comment=:commentid/edit-comment'
                 component={EditComment}
+              />
+              <Route
+                path='/:category'
+                component={Posts}
               />
             </Switch>
           </div>
