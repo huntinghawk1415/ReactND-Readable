@@ -2,17 +2,23 @@
 
 ## To get started:
 
-* Install all dependencies
-    - `npm install`
+* (From the `root` directory) Install all dependencies
+```bash
+cd frontend; npm i; cd ../api-server; npm i
+```
 
 
-* Start the API server
-    - `cd api-server; node server`
+* (Following the above, you should be in `*root/api-server`) Start the API server
+```bash
+node server
+```
 
-Note the server should be listening on port: 3001
+__Note__: the server should be listening on port 3001 and frontend should be listening on 3000
 
-* In another terminal window, start the frontend
-    - `cd frontend; npm start`
+* In another terminal window, (From the `root` directory) start the frontend
+```bash
+cd frontend; npm start
+```
 
 ## API Server
 
