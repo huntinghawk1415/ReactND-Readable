@@ -1,5 +1,7 @@
 # Readable Project from Udacity
 
+This project represents a forum in which the user can read and make posts, post comments, and vote on pretty much everything. But not only is the user able to giveth, they can taketh as well by simply clicking the delete button.
+
 ## To get started:
 
 * (From the `root` directory) Install all dependencies
